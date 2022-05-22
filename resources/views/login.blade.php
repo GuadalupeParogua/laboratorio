@@ -39,7 +39,7 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Laboratorio de Protesis YHOSMAR</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Laboratorio de Protesis YOHMAR'S</h1>
                                     </div>
 
                                     @if ($errors->any())
@@ -81,7 +81,7 @@
 
     <!-- Bootstrap core JavaScript-->
     <script src="{{asset('/adminTemplate/vendor/jquery/jquery.min.js')}}"></script>
-    <script src= "{{asset('/adminTemplate/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('/adminTemplate/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
     <!-- Core plugin JavaScript-->
     <script src="{{asset('/adminTemplate/vendor/jquery-easing/jquery.easing.min.js')}}"></script>

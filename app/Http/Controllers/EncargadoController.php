@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\encargado;
-use App\Models\persona;
+//use App\Models\persona;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreencargadoRequest;
 use App\Http\Requests\UpdateencargadoRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 class EncargadoController extends Controller
 {
@@ -24,7 +25,7 @@ class EncargadoController extends Controller
     {      
       return view('login');
     }
-
+    
     public function login(Request $request)
     {
       $validateData = $request->validate([
@@ -32,16 +33,30 @@ class EncargadoController extends Controller
         'password' => ['required'],
       ]);
       $encargado = encargado::where('usuario', $request->usuario)->first();
-  
+        
       if (is_null($encargado)) {
         return back()->withErrors(['error' => 'el usuario no existe']);
       }
+      /*if (Hash::check($request->password, $encargado->password)) {
+        return redirect()->route('menu');
+      }*/
       if (Auth::guard('admin')->attempt(['usuario' => $request->usuario, 'password' => $request->password])) {
   
         return redirect()->route('menu');
       }
       return back()->withErrors(['Error' => 'la contraseña es incorrecta']);
-    }  
+    } 
+    
+    public function menu()
+    {  
+      return view('menu');
+    }
+  
+
+  public function logout(){
+    Auth::guard('admin')->logout();
+    return redirect()->route('login.view');
+  }
     /**
      * Show the form for creating a new resource.
      *

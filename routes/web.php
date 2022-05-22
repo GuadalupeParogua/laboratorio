@@ -1,6 +1,8 @@
 <?php
 
+
 use App\Http\Controllers\EncargadoController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,14 +16,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/*Route::get('/', function () {
+    return view('welcome');
+});*/
+
 Route::get('/', function () {
     return view('login');
 })->name('login');
 
-Route::get('/login', [EncargadoController::class, 'loginView'])->name('login.view')->middleware('guest:admin');
+Route::get('/login',[EncargadoController::class, 'loginView'])->name('login.view')->middleware('guest:admin');
 Route::post('/login', [EncargadoController::class, 'login'])->name('login')->middleware('guest:admin');
 
 Route::middleware('auth:admin')->group(function () {
+
     Route::post('/logout',[EncargadoController::class,'logout'])->name('logout');
+
     Route::get('/menu', [EncargadoController::class, 'menu'])->name("menu");
+
 });
