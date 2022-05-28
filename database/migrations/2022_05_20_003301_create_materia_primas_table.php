@@ -21,7 +21,6 @@ return new class extends Migration
             $table->unsignedBigInteger('id_categoria')->nullable();
             $table->string('nombre')->nullable();
             $table->float('p_venta')->nullable();
-            $table->float('p_compra')->nullable();
             //$table->string('estado');
             $table->timestamps();
             $table->softDeletes();

@@ -22,12 +22,7 @@
                             for="p_venta" value="{{ old('p_venta') }}">
 
                     </div>
-                    <div class="col-xs-12 col-sm-12 col-md-6 mt-3">
-                        <label for="p_compra" class="form-label la">Precio Compra:</label>
-                        <input name="p_compra" type="number" class="form-control shadow-sm" id="p_compra"
-                            for="p_compra" value="{{ old('p_compra') }}">
-
-                    </div>
+                 
                     <div class="col-xs-12 col-sm-12 col-md-4 mt-3">
                         <label for="id_unidadMedida" class="form-label la">Unidad Medida:</label>
                         <select class="form-control js-example-theme-single " name="id_unidadMedida" id="id_unidadMedida" >

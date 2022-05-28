@@ -58,7 +58,6 @@ class MateriaPrimaController extends Controller
         $mprima = new materia_prima;
         $mprima->nombre = $request->nombre;
         $mprima->p_venta = $request->p_venta;
-        $mprima->p_compra = $request->p_compra;
         $mprima->id_unidadMedida = $request->id_unidadMedida;
         $mprima->id_area = $request->id_area;
         $mprima->id_categoria = $request->id_categoria;
@@ -111,7 +110,7 @@ class MateriaPrimaController extends Controller
          $mprima =materia_prima::find($id);
          $mprima->nombre = $request->nombre;
          $mprima->p_venta = $request->p_venta;
-         $mprima->p_compra = $request->p_compra;
+
          $mprima->id_unidadMedida = $request->id_unidadMedida;
          $mprima->id_area = $request->id_area;
          $mprima->id_categoria = $request->id_categoria;

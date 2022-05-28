@@ -25,7 +25,7 @@
                 <th>Nrº</th>
                 <th>Nombre</th>
                 <th>Precio Venta</th>
-                <th>Precio Compra</th>
+
                 {{-- foraneas --}}
                 <th>Unidad Medida</th>
                 <th>Area</th>
@@ -42,7 +42,6 @@
                     <td>{{ $i++ }}</td>
                     <td>{{ $mprimas->nombre }}</td>
                     <td>{{ $mprimas->p_venta }}</td>
-                    <td>{{ $mprimas->p_compra }}</td>
                     <td>{{ $mprimas->UniMedida->nombre }}</td>
                     <td>{{ $mprimas->AreAlmacen->nombre }}</td>
                     <td>{{ $mprimas->categoria->nombre }}</td>

@@ -65,9 +65,10 @@ class LoteController extends Controller
      * @param  \App\Models\lote  $lote
      * @return \Illuminate\Http\Response
      */
-    public function edit(lote $lote)
+    public function edit($id)
     {
-        //
+        $lotes = lote::find($id);
+        return view('lote.edit',compact('lotes'));
     }
 
     /**
@@ -77,9 +78,14 @@ class LoteController extends Controller
      * @param  \App\Models\lote  $lote
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateloteRequest $request, lote $lote)
+    public function update(Request $request, $id)
     {
-        //
+        $lote= lote::find($id);
+        $lote->f_entrega=$request->f_entrega;
+        $lote->p_compra=$request->p_compra;
+        $lote->estado=$request->estado;
+        $lote->save();
+        return Redirect()->route('lote.index');
     }
 
     /**
