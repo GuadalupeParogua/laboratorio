@@ -19,11 +19,12 @@ class MateriaPrimaController extends Controller
      */
     public function index()
     {
+        $lista_material=materia_prima::all();
         $mprima = materia_prima::all();
         $categoria = categoria::all();
         $area = area_almacenamiento::all();
         $unidad = unidad_de_medida::all();
-        return view('mprima.index', compact('mprima', 'categoria', 'area', 'unidad'));
+        return view('mprima.index', compact('mprima', 'categoria', 'area', 'unidad','lista_material'));
     }
 
     /**
@@ -98,9 +99,24 @@ class MateriaPrimaController extends Controller
      * @param  \App\Models\materia_prima  $materia_prima
      * @return \Illuminate\Http\Response
      */
-    public function update(Updatemateria_primaRequest $request, materia_prima $materia_prima)
+    public function update(Request $request,$id)
     {
-        //
+        $request->validate([
+            'id_unidadMedida'=> 'required',
+            'id_area' =>'required',
+            'id_categoria'=>'required',
+
+        ]
+        );
+         $mprima =materia_prima::find($id);
+         $mprima->nombre = $request->nombre;
+         $mprima->p_venta = $request->p_venta;
+         $mprima->p_compra = $request->p_compra;
+         $mprima->id_unidadMedida = $request->id_unidadMedida;
+         $mprima->id_area = $request->id_area;
+         $mprima->id_categoria = $request->id_categoria;
+         $mprima->save();
+         return redirect()->route('mprimas.index');
     }
 
     /**
@@ -109,8 +125,10 @@ class MateriaPrimaController extends Controller
      * @param  \App\Models\materia_prima  $materia_prima
      * @return \Illuminate\Http\Response
      */
-    public function destroy(materia_prima $materia_prima)
+    public function destroy($id)
     {
-        //
+        $mprimas=materia_prima::find($id);
+        $mprimas->delete();
+        return redirect()->route('mprimas.index');
     }
 }

@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\lote;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreloteRequest;
 use App\Http\Requests\UpdateloteRequest;
+use Illuminate\Support\Facades\Redirect;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class LoteController extends Controller
 {
@@ -15,7 +18,8 @@ class LoteController extends Controller
      */
     public function index()
     {
-        //
+        $lote = Lote::all();
+        return view('lote.index',compact('lote'));
     }
 
     /**
@@ -34,9 +38,14 @@ class LoteController extends Controller
      * @param  \App\Http\Requests\StoreloteRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreloteRequest $request)
+    public function store(Request $request)
     {
-        //
+        $lote= new lote;
+        $lote->id_materiaprima=$request->lista_material;
+        $lote->f_vencimiento=$request->fecha_c;
+        $lote->cantidad=$request->cantidad;
+        $lote->save();
+        return Redirect()->route('lote.index');
     }
 
     /**
@@ -82,5 +91,14 @@ class LoteController extends Controller
     public function destroy(lote $lote)
     {
         //
+    }
+    /* exportacion de pdf de solicitudes de compra */
+
+    public function ExportPdf($id){
+        $solicitud=lote::find($id);
+        $pdf=PDF::loadView('lote.pdf',compact('solicitud'));
+        $pdf->setPaper('carta','portrait');
+        //  return $pdf->download('estudiantes.pdf');
+        return $pdf->stream('Solicitud.pdf');
     }
 }

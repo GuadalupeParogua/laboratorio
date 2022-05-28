@@ -39,6 +39,8 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/proveedor/proveedor-route.php'));
                 Route::middleware('web')
                 ->group(base_path('routes/mprimas/mprimas-route.php'));
+                Route::middleware('web')
+                ->group(base_path('routes/lote/lote-route.php'));
         });
     }
 

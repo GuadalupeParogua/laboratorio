@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\lote;
 use App\Models\categoria;
 use App\Models\unidad_de_medida;
 use App\Models\area_almacenamiento;
@@ -15,7 +16,7 @@ class materia_prima extends Model
     /* relacion uno a mucho */
     public function UniMedida()
     {
-        return $this->belongsTo(unidad_de_medida::class,'id_unidadMedida');
+        return $this->belongsTo(unidad_de_medida::class, 'id_unidadMedida');
     }
     /* relacion uno a mucho */
     public function categoria()
@@ -26,5 +27,12 @@ class materia_prima extends Model
     public function AreAlmacen()
     {
         return $this->belongsTo(area_almacenamiento::class, 'id_area');
+    }
+
+    /* relacion de materia prima con lote */
+    // uno a muchos
+    public function lote()
+    {
+        return $this->hasMany(lote::class, 'id');
     }
 }
