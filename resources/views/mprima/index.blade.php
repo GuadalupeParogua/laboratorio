@@ -111,7 +111,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary" style="background: #08a129; border-color: #fbaf32;">
-                            Habilitar</button>
+                            Enviar</button>
                     </div>
                 </form>
 
