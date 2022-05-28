@@ -19,7 +19,8 @@ class EncargadoController extends Controller
      */
     public function index()
     {
-        //
+        $administradores= encargado::all();
+        return view('gestionar_encargado.index', compact('administradores'));
     }
     public function loginView()
     {      
@@ -37,9 +38,7 @@ class EncargadoController extends Controller
       if (is_null($encargado)) {
         return back()->withErrors(['error' => 'el usuario no existe']);
       }
-      /*if (Hash::check($request->password, $encargado->password)) {
-        return redirect()->route('menu');
-      }*/
+
       if (Auth::guard('admin')->attempt(['usuario' => $request->usuario, 'password' => $request->password])) {
   
         return redirect()->route('menu');
@@ -64,7 +63,7 @@ class EncargadoController extends Controller
      */
     public function create()
     {
-        //
+      return view('gestionar_encargado.create');
     }
 
     /**

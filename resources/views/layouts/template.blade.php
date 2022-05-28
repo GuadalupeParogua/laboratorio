@@ -67,14 +67,14 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Registrar:</h6>
-                        <a class="collapse-item" href="{{asset('/personas/odontologo')}}">Odontologo</a>
-                        <a class="collapse-item" href="{{asset('/personas/clinica')}}">Clinica</a>
-                        <a class="collapse-item" href="{{asset('/personas/ordenpedido')}}">Orden de pedido</a>
-                        <a class="collapse-item" href="{{asset('/personas/productoFinal')}}">Producto Final</a>
+                        <a class="collapse-item" href="{{asset('/odontologos')}}">Odontologo</a>
+                        <a class="collapse-item" href="{{asset('/clinicas')}}">Clinica</a>
+                        <a class="collapse-item" href="{{asset('/ordenpedido')}}">Orden de pedido</a>
+                        <a class="collapse-item" href="{{asset('/productoFinal')}}">Producto Final</a>
                         
                         <a class="collapse-item" href="{{asset('/pago')}}">Pago cliente</a>
                         <a class="collapse-item" href="{{asset('/tipopago')}}">Tipo de pago</a>
-                        <a class="collapse-item" href="{{asset('/personas/categoria')}}">Categoria</a>
+                        <a class="collapse-item" href="{{asset('/categorias')}}">Categoria</a>
                     </div>
                 </div>
             </li>
@@ -89,11 +89,12 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Gestionar:</h6>
-                        <a class="collapse-item" href="{{asset('/areas')}}">Areas</a>
-                        <a class="collapse-item" href="{{asset('/disciplinas')}}">Disciplinas</a>
-                        <a class="collapse-item" href="{{asset('/grupos')}}">Grupos</a>
-                        <a class="collapse-item" href="{{asset('/paquetes')}}">Paquetes</a>
+                        <h6 class="collapse-header">Registrar:</h6>
+                        <a class="collapse-item" href="{{asset('/proveedor')}}">Proveedor</a>
+                        <a class="collapse-item" href="{{asset('/compra')}}">Compra de materia prima</a>
+                        <a class="collapse-item" href="{{asset('/materiaPrima')}}">Materia Prima</a>
+                        <a class="collapse-item" href="{{asset('/unidadMedida')}}">Unidad de medida</a>
+                        <a class="collapse-item" href="{{asset('/Almacenamiento')}}">Area de almacenamiento</a>
                     </div>
                 </div>
             </li>
@@ -117,9 +118,15 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gestionar:</h6>
-                        <a class="collapse-item" href="{{asset('/categorias')}}">Categorias</a>
-                        <a class="collapse-item" href="{{asset('/productos')}}">Productos</a>
-                        <a class="collapse-item" href="{{asset('/notaDeVentas')}}">Nota de venta</a>
+                        <a class="collapse-item" href="{{asset('/administradores')}}">Administrador</a>
+                        <a class="collapse-item" href="{{asset('/bitacora')}}">Bitacora</a>
+                        
+                        <form action="{{route('logout')}}" method="POST">
+                            {{ csrf_field() }}
+                        <button class="dropdown-item" href="#">
+                            <a class="collapse-item">cerrar sesion</a>
+                        </button>
+                        </form>
                     </div>
                 </div>
             </li>
@@ -230,7 +237,7 @@
                                     {{ csrf_field() }}
                                 <button class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Salir
+                                    Cerrar Sesion
                                 </button>
                                 </form>
                             </div>
