@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\categoria;
+use Illuminate\Http\Request;
 use App\Models\materia_prima;
 use App\Http\Requests\Storemateria_primaRequest;
 use App\Http\Requests\Updatemateria_primaRequest;
+use App\Models\area_almacenamiento;
+use App\Models\unidad_de_medida;
 
 class MateriaPrimaController extends Controller
 {
@@ -15,7 +19,11 @@ class MateriaPrimaController extends Controller
      */
     public function index()
     {
-        //
+        $mprima = materia_prima::all();
+        $categoria = categoria::all();
+        $area = area_almacenamiento::all();
+        $unidad = unidad_de_medida::all();
+        return view('mprima.index', compact('mprima', 'categoria', 'area', 'unidad'));
     }
 
     /**
@@ -25,7 +33,10 @@ class MateriaPrimaController extends Controller
      */
     public function create()
     {
-        //
+        $categoria = categoria::all();
+        $area = area_almacenamiento::all();
+        $unidad = unidad_de_medida::all();
+        return view('mprima.create', compact('categoria', 'area', 'unidad'));
     }
 
     /**
@@ -34,9 +45,24 @@ class MateriaPrimaController extends Controller
      * @param  \App\Http\Requests\Storemateria_primaRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Storemateria_primaRequest $request)
+    public function store(Request $request)
     {
-        //
+       $request->validate([
+           'id_unidadMedida'=> 'required',
+           'id_area' =>'required',
+           'id_categoria'=>'required',
+
+       ]
+       );
+        $mprima = new materia_prima;
+        $mprima->nombre = $request->nombre;
+        $mprima->p_venta = $request->p_venta;
+        $mprima->p_compra = $request->p_compra;
+        $mprima->id_unidadMedida = $request->id_unidadMedida;
+        $mprima->id_area = $request->id_area;
+        $mprima->id_categoria = $request->id_categoria;
+        $mprima->save();
+        return redirect()->route('mprimas.index');
     }
 
     /**
@@ -56,9 +82,13 @@ class MateriaPrimaController extends Controller
      * @param  \App\Models\materia_prima  $materia_prima
      * @return \Illuminate\Http\Response
      */
-    public function edit(materia_prima $materia_prima)
+    public function edit($id)
     {
-        //
+        $categoria = categoria::all();
+        $area = area_almacenamiento::all();
+        $unidad = unidad_de_medida::all();
+        $mprima = materia_prima::find($id);
+        return view('mprima.edit', compact('mprima','categoria', 'area', 'unidad'));
     }
 
     /**

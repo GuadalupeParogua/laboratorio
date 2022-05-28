@@ -12,6 +12,7 @@
     <title>Menu administrador</title>
 
     <!-- Custom fonts for this template-->
+
     <link href="{{asset('/adminTemplate/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -34,7 +35,7 @@
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="menu">
                 <!--<div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
-                    
+
                 </div>-->
                 <div class="sidebar-brand-text mx-3">YOHMAR'S</div>
             </a>
@@ -71,7 +72,7 @@
                         <a class="collapse-item" href="{{asset('/personas/clinica')}}">Clinica</a>
                         <a class="collapse-item" href="{{asset('/personas/ordenpedido')}}">Orden de pedido</a>
                         <a class="collapse-item" href="{{asset('/personas/productoFinal')}}">Producto Final</a>
-                        
+
                         <a class="collapse-item" href="{{asset('/pago')}}">Pago cliente</a>
                         <a class="collapse-item" href="{{asset('/tipopago')}}">Tipo de pago</a>
                         <a class="collapse-item" href="{{asset('/personas/categoria')}}">Categoria</a>
@@ -89,15 +90,16 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Gestionar:</h6>
-                        <a class="collapse-item" href="{{asset('/areas')}}">Areas</a>
-                        <a class="collapse-item" href="{{asset('/disciplinas')}}">Disciplinas</a>
+                        <h6 class="collapse-header">:</h6>
+                        <a class="collapse-item" href="{{route('proveedor.index')}}">Proveedores</a>
+                        <a class="collapse-item" href="{{-- {{route('/areas')}} --}}">Compras de Materia prima</a>
+                        <a class="collapse-item" href="{{route('mprimas.index')}}">Materia Prima</a>
                         <a class="collapse-item" href="{{asset('/grupos')}}">Grupos</a>
                         <a class="collapse-item" href="{{asset('/paquetes')}}">Paquetes</a>
                     </div>
                 </div>
             </li>
-            
+
 
 
             <!-- Divider -->
@@ -124,7 +126,7 @@
                 </div>
             </li>
             <!-- Nav Item - Pages Collapse Menu -->
-            
+
             <!-- Nav Item - Charts -->
             <!--
             <li class="nav-item">
@@ -167,7 +169,7 @@
                     </button>
 
                     <!-- Topbar Search -->
-                   
+
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
@@ -195,8 +197,8 @@
                             </div>
                         </li>
 
-                        <!-- Nav Item - Alerts -->           
-                        <!-- Nav Item - Messages -->       
+                        <!-- Nav Item - Alerts -->
+                        <!-- Nav Item - Messages -->
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -252,21 +254,21 @@
                     </div>
                     <!-- content Row-->
                     <div class="row">
-                        
+
                         @yield('content')
 
                     </div>
 
 
                 </div>
-                
+
 
             </div>
             <!-- End of Main Content -->
 
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
- 
+
             </footer>
             <!-- End of Footer -->
 
@@ -285,6 +287,8 @@
 
 
     <!-- Bootstrap core JavaScript-->
+
+
     <script src="{{asset('/adminTemplate/vendor/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('/adminTemplate/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
@@ -300,7 +304,7 @@
     <!-- Page level custom scripts -->
     <script src="{{asset('/adminTemplate/js/demo/chart-area-demo.js')}}"></script>
     <script src="{{asset('/adminTemplate/js/demo/chart-pie-demo.js')}}"></script>
-    
+
     <!-- Page level plugins -->
     <script src="{{asset('/adminTemplate/vendor/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('/adminTemplate/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>

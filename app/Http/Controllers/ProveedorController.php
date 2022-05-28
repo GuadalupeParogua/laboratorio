@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\proveedor;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreproveedorRequest;
 use App\Http\Requests\UpdateproveedorRequest;
+use Illuminate\Support\Facades\Redirect;
 
 class ProveedorController extends Controller
 {
@@ -15,7 +17,8 @@ class ProveedorController extends Controller
      */
     public function index()
     {
-        //
+        $proveedor = proveedor::all();
+        return view('proveedor.index')->with('proveedor', $proveedor);
     }
 
     /**
@@ -25,7 +28,7 @@ class ProveedorController extends Controller
      */
     public function create()
     {
-        //
+        return view('proveedor.create');
     }
 
     /**
@@ -34,9 +37,14 @@ class ProveedorController extends Controller
      * @param  \App\Http\Requests\StoreproveedorRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreproveedorRequest $request)
+    public function store(Request $request)
     {
-        //
+        $proveedor = new proveedor;
+        $proveedor->nombre = $request->nombre;
+        $proveedor->telefono = $request->telefono;
+        $proveedor->direccion = $request->direccion;
+        $proveedor->save();
+        return redirect('proveedor.index');
     }
 
     /**
@@ -47,7 +55,7 @@ class ProveedorController extends Controller
      */
     public function show(proveedor $proveedor)
     {
-        //
+        // no es necesario crear una vista o ruta para el show , por que son solo 3 columnas en la BD
     }
 
     /**
@@ -56,9 +64,10 @@ class ProveedorController extends Controller
      * @param  \App\Models\proveedor  $proveedor
      * @return \Illuminate\Http\Response
      */
-    public function edit(proveedor $proveedor)
+    public function edit($id)
     {
-        //
+        $proveedor = proveedor::find($id);
+        return view('proveedor.edit', compact('proveedor'));
     }
 
     /**
@@ -68,9 +77,14 @@ class ProveedorController extends Controller
      * @param  \App\Models\proveedor  $proveedor
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateproveedorRequest $request, proveedor $proveedor)
+    public function update(Request $request, $id)
     {
-        //
+        $proveedor = proveedor::find($id);
+        $proveedor->nombre = $request->nombre;
+        $proveedor->telefono = $request->telefono;
+        $proveedor->direccion = $request->direccion;
+        $proveedor->update();
+        return Redirect()->route('proveedor.index');
     }
 
     /**
@@ -79,8 +93,10 @@ class ProveedorController extends Controller
      * @param  \App\Models\proveedor  $proveedor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(proveedor $proveedor)
+    public function destroy($id)
     {
-        //
+        $proveedor = proveedor::find($id);
+        $proveedor->delete();
+        return redirect()->route('proveedor.index');
     }
 }
