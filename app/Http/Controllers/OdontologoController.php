@@ -15,7 +15,8 @@ class OdontologoController extends Controller
      */
     public function index()
     {
-        //
+        $odontologos= odontologo::all();
+        return view('gestionar_odontologo.index', compact('odontologos'));
     }
 
     /**
@@ -25,7 +26,7 @@ class OdontologoController extends Controller
      */
     public function create()
     {
-        //
+        return view('gestionar_odontologo.create');
     }
 
     /**

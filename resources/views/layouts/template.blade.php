@@ -75,7 +75,7 @@
 
                         <a class="collapse-item" href="{{asset('/pago')}}">Pago cliente</a>
                         <a class="collapse-item" href="{{asset('/tipopago')}}">Tipo de pago</a>
-                        <a class="collapse-item" href="{{asset('/personas/categoria')}}">Categoria</a>
+                        <a class="collapse-item" href="{{asset('/categorias')}}">Categoria</a>
                     </div>
                 </div>
             </li>
@@ -90,12 +90,12 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">:</h6>
-                        <a class="collapse-item" href="{{route('proveedor.index')}}">Proveedores</a>
-                        <a class="collapse-item" href="{{-- {{route('/areas')}} --}}">Compras de Materia prima</a>
+                        <h6 class="collapse-header">Registrar:</h6>
+                        <a class="collapse-item" href="{{route('proveedor.index')}}">Proveedor</a>
+                        <a class="collapse-item" href="{{asset('/compra')}}">Compra de materia prima</a>
                         <a class="collapse-item" href="{{route('mprimas.index')}}">Materia Prima</a>
-                        <a class="collapse-item" href="{{asset('/grupos')}}">Grupos</a>
-                        <a class="collapse-item" href="{{asset('/paquetes')}}">Paquetes</a>
+                        <a class="collapse-item" href="{{asset('/unidadMedida')}}">Unidad de medida</a>
+                        <a class="collapse-item" href="{{asset('/Almacenamiento')}}">Area de almacenamiento</a>
                     </div>
                 </div>
             </li>
@@ -119,9 +119,15 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gestionar:</h6>
-                        <a class="collapse-item" href="{{asset('/categorias')}}">Categorias</a>
-                        <a class="collapse-item" href="{{asset('/productos')}}">Productos</a>
-                        <a class="collapse-item" href="{{asset('/notaDeVentas')}}">Nota de venta</a>
+                        <a class="collapse-item" href="{{asset('/administradores')}}">Administrador</a>
+                        <a class="collapse-item" href="{{asset('/bitacora')}}">Bitacora</a>
+
+                        <form action="{{route('logout')}}" method="POST">
+                            {{ csrf_field() }}
+                        <button class="dropdown-item" href="#">
+                            <a class="collapse-item">cerrar sesion</a>
+                        </button>
+                        </form>
                     </div>
                 </div>
             </li>
@@ -232,7 +238,7 @@
                                     {{ csrf_field() }}
                                 <button class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Salir
+                                    Cerrar Sesion
                                 </button>
                                 </form>
                             </div>

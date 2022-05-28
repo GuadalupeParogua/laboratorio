@@ -11100,8 +11100,7 @@ a:focus {
 
 .bg-gradient-primary {
     /* background-color: #4e73df; */
-    background-image: linear-gradient(4deg, #7bd12399 -14%, #4ba6cc 44%);
-    /* background-image: url(../img/fondogym.jpg); */
+    background-image: linear-gradient(4deg, #7bd12399 -14%, #266a8e 44%);
     background-size: cover;
 }
 

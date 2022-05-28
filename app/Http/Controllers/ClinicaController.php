@@ -15,7 +15,8 @@ class ClinicaController extends Controller
      */
     public function index()
     {
-        //
+        $clinicas = clinica::all();
+        return view('gestionar_clinica.index', compact('clinicas'));
     }
 
     /**
@@ -25,7 +26,7 @@ class ClinicaController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
