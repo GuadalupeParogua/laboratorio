@@ -68,10 +68,10 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Registrar:</h6>
-                        <a class="collapse-item" href="{{asset('/personas/odontologo')}}">Odontologo</a>
-                        <a class="collapse-item" href="{{asset('/personas/clinica')}}">Clinica</a>
-                        <a class="collapse-item" href="{{asset('/personas/ordenpedido')}}">Orden de pedido</a>
-                        <a class="collapse-item" href="{{asset('/personas/productoFinal')}}">Producto Final</a>
+                        <a class="collapse-item" href="{{route('odontologos.index')}}">Odontologo</a>
+                        <a class="collapse-item" href="{{asset('/clinicas')}}">Clinica</a>
+                        <a class="collapse-item" href="{{asset('/ordenpedidos')}}">Orden de pedido</a>
+                        <a class="collapse-item" href="{{asset('/productoFinal')}}">Producto Final</a>
 
                         <a class="collapse-item" href="{{asset('/pago')}}">Pago cliente</a>
                         <a class="collapse-item" href="{{asset('/tipopago')}}">Tipo de pago</a>
@@ -95,7 +95,7 @@
                         <a class="collapse-item" href="{{asset('/compra')}}">Compra de materia prima</a>
                         <a class="collapse-item" href="{{route('mprimas.index')}}">Materia Prima</a>
                         <a class="collapse-item" href="{{route('unidadmedida.index')}}">Unidad de medida</a>
-                        <a class="collapse-item" href="{{asset('/Almacenamiento')}}">Area de almacenamiento</a>
+                    <a class="collapse-item" href="{{route('area.index')}}">Area de almacenamiento</a>
                     </div>
                 </div>
             </li>

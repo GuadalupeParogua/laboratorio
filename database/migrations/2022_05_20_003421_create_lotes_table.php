@@ -16,14 +16,15 @@ return new class extends Migration
         Schema::create('lotes', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_materiaprima');
-            $table->date('f_vencimiento');
-            $table->string('cantidad');
-            //$table->string('estado');
-
+             $table->string('cantidad');
+            $table->date('f_vencimiento'); /* fecha de compra */
+            $table->date('f_entrega')->nullable();
+            $table->date('p_compra')->nullable();
+            $table->mediumInteger('estado')->default(1);
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('id_materiaprima')->on('materia_primas')->references('id')->onDelete('cascade')->onUpdate('cascade');
-                 
+
         });
     }
 

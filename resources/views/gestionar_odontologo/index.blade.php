@@ -8,7 +8,7 @@
                     <!-- Page Heading -->
                     
                     <p class="mb-4"></p>       
-                    <a href="{{'/odontologos/create'}}" class="btn btn-success btn-icon-split">
+                    <a href="{{route('odontologos.create')}}" class="btn btn-success btn-icon-split">
                         <span class="text">Registrar Cliente</span>
                     </a>
                     <div class="my-2"></div>
