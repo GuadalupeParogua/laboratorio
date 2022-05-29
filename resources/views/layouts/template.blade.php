@@ -95,7 +95,7 @@
                         <a class="collapse-item" href="{{asset('/compra')}}">Compra de materia prima</a>
                         <a class="collapse-item" href="{{route('mprimas.index')}}">Materia Prima</a>
                         <a class="collapse-item" href="{{asset('/unidadMedida')}}">Unidad de medida</a>
-                        <a class="collapse-item" href="{{asset('/Almacenamiento')}}">Area de almacenamiento</a>
+                        <a class="collapse-item" href="{{route('area.index')}}">Area de almacenamiento</a>
                     </div>
                 </div>
             </li>
