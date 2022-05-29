@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\unidad_de_medida;
-use App\Http\Requests\Storeunidad_de_medidaRequest;
-use App\Http\Requests\Updateunidad_de_medidaRequest;
+use Illuminate\Http\Request;
+
 
 class UnidadDeMedidaController extends Controller
 {
@@ -15,7 +15,8 @@ class UnidadDeMedidaController extends Controller
      */
     public function index()
     {
-        //
+        $unidad =unidad_de_medida::all();
+        return view('unidad_medida.index')->with('unidad', $unidad); 
     }
 
     /**
@@ -25,7 +26,7 @@ class UnidadDeMedidaController extends Controller
      */
     public function create()
     {
-        //
+        return view('unidad_medida.create');
     }
 
     /**
@@ -34,9 +35,13 @@ class UnidadDeMedidaController extends Controller
      * @param  \App\Http\Requests\Storeunidad_de_medidaRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Storeunidad_de_medidaRequest $request)
+    public function store(Request $request)
     {
-        //
+        $unidad= new unidad_de_medida;
+        $unidad->nombre = $request->nombre;
+        $unidad->abreviatura = $request->abreviatura;
+        $unidad->save();
+        return redirect()->route('unidadmedida.index');
     }
 
     /**
@@ -56,9 +61,10 @@ class UnidadDeMedidaController extends Controller
      * @param  \App\Models\unidad_de_medida  $unidad_de_medida
      * @return \Illuminate\Http\Response
      */
-    public function edit(unidad_de_medida $unidad_de_medida)
+    public function edit($id)
     {
-        //
+        $unidad = unidad_de_medida::find($id);
+        return view('unidad_medida.edit', compact('unidad'));
     }
 
     /**
@@ -68,19 +74,25 @@ class UnidadDeMedidaController extends Controller
      * @param  \App\Models\unidad_de_medida  $unidad_de_medida
      * @return \Illuminate\Http\Response
      */
-    public function update(Updateunidad_de_medidaRequest $request, unidad_de_medida $unidad_de_medida)
+    public function update(Request $request,$id)
     {
-        //
+        $unidad = unidad_de_medida::find($id);
+        $unidad->nombre = $request->nombre;
+        $unidad->abreviatura = $request->abreviatura;
+        $unidad->update();
+        return Redirect()->route('unidadmedida.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\unidad_de_medida  $unidad_de_medida
+     * @param  \App\Models\$unidad_de_medida
      * @return \Illuminate\Http\Response
      */
-    public function destroy(unidad_de_medida $unidad_de_medida)
+    public function destroy( $id)
     {
-        //
+        $unidad = unidad_de_medida::find($id);
+        $unidad->delete();
+        return redirect()->route('unidadmedida.index');
     }
 }
