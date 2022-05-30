@@ -2,86 +2,52 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\clinica;
-use App\Http\Requests\StoreclinicaRequest;
-use App\Http\Requests\UpdateclinicaRequest;
+//use App\http\Request\StoreclinicaRequest;
 
 class ClinicaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $clinicas = clinica::all();
-        return view('gestionar_clinica.index', compact('clinicas'));
+    public function index(){
+        $clinica = clinica::all();
+        return view('gestionar_clinica.index')->with('clinica', $clinica);
+    }
+    public function create(){
+        return view('gestionar_clinica.create');
+    }
+    public function store(Request $request){
+        $clinica = new clinica;
+        $clinica->nombre = $request->nombre;
+        $clinica->direccion = $request->direccion;
+        $clinica->telefono = $request->telefono;
+        $clinica->save();
+        return redirect()->route('clinicas.index');
+      
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
+    public function edit($id){
+        $clinica = clinica::find($id);
+        //return $clinica; -Funciona
 
+        return view('gestionar_clinica.edit', compact('clinica'));
+        
+    }
+    public function update(Request $request, $id){
+        $clinica = clinica::find($id);
+        //return $clinica;
+        //return $request->all();
+        $clinica->nombre = $request->nombre;
+        $clinica->direccion = $request->direccion;
+        $clinica->telefono = $request->telefono;
+        //return $clinica;
+        $clinica->save();
+        return redirect()->route('clinicas.index');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreclinicaRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreclinicaRequest $request)
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\clinica  $clinica
-     * @return \Illuminate\Http\Response
-     */
-    public function show(clinica $clinica)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\clinica  $clinica
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(clinica $clinica)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateclinicaRequest  $request
-     * @param  \App\Models\clinica  $clinica
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateclinicaRequest $request, clinica $clinica)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\clinica  $clinica
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(clinica $clinica)
-    {
-        //
+        $clinica = clinica::find($id);
+        $clinica->delete();
+        return redirect()->route('clinicas.index');
     }
 }

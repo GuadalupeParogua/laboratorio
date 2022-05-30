@@ -1,6 +1,6 @@
 @extends('layouts.template')
 
-@section('header')Registrar nuevo Encargado @endsection
+@section('header')Modificar nuevo Encargado @endsection
 
 @section('content')
     <div class="container">
@@ -24,37 +24,41 @@
                                         @endforeach
                                     </ul>
                                 </div>
+                                
                             @endif
-                            <!-- personas.create=stores-->
-                            <form class="user" action="{{ route('administradores.store') }}"  method="POST"
+                            <!-- formulario para editar-->
+                            
+                            <form class="user" action="{{ route('administradores.update',[$persona->id]) }}"  method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
+                                @method('PUT')
+                                
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="exampleInputEmail"
-                                        name="ci" placeholder="Ci" value="{{ old('ci') }}">
+                                        name="ci" placeholder="Ci" value="{{ $persona->ci }}">
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                            name="nombre" placeholder="Nombres" value="{{ old('nombre') }}">
+                                            name="nombre" placeholder="Nombres" value="{{($persona->nombre) }}">
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control form-control-user" id="exampleLastName"
-                                            name="apellido" placeholder="Apellidos" value="{{ old('apellido') }}">
+                                            name="apellido" placeholder="Apellidos" value="{{ ($persona->apellido) }}">
                                     </div>
                                 </div>
                                
                                 <div class="form-group">
                                     <input type="tel" class="form-control form-control-user" id="exampleInputEmail"
-                                        name="telefono" placeholder="Telefono" value="{{ old('telefono') }}">
+                                        name="telefono" placeholder="Telefono" value="{{ ($persona->telefono) }}">
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="exampleInputEmail"
-                                        name="direccion" placeholder="Direccion" value="{{ old('direccion') }}">
+                                        name="direccion" placeholder="Direccion" value="{{($persona->direccion) }}">
                                 </div>
                                 <div class="form-group">
                                     <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                                        name="correo" placeholder="Correo" value="{{ old('correo') }}">
+                                        name="correo" placeholder="Correo" value="{{($persona->correo) }}">
                                 </div>
 
                                 <div class="form-group">
@@ -64,18 +68,18 @@
 
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="exampleInputEmail"
-                                        name="usuario" placeholder="Usuario" value="{{ old('Usuario') }}">
+                                        name="usuario" placeholder="Usuario" value="{{($persona->encargado->usuario) }}">
                                 </div>
                                 <div class="form-group">
                                     <input type="password" class="form-control form-control-user" id="exampleInputEmail"
-                                        name="password" placeholder="password" value="{{ old('password') }}">
+                                        name="password" placeholder="password" value="{{($persona->encargado->password) }}">
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="submit" class="btn btn-facebook btn-user btn-block" value="Aceptar">
                                     </div>
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <a href="{{ route('menu') }}"
+                                        <a href="{{ route('administradores.index') }}"
                                             class="btn btn-primary btn-user btn-block">
                                             Cancelar
                                         </a>

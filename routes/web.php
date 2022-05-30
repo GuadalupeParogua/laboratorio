@@ -36,29 +36,49 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/menu', [EncargadoController::class, 'menu'])->name("menu");
 
 
-    //Administrador-encargado
+    //Administrador-encargado--listo
     Route::get('/administradores', [EncargadoController::class, 'index'])
     ->name('administradores.index');
     Route::get('/administradores/create', [EncargadoController::class, 'create'])
-        ->name('administradores.create');   
- 
+    ->name('administradores.create');   
+    route::get('administradores.edit/{id_persona}', [EncargadoController::class, 'edit'])
+    ->name('administradores.edit');
+    route::post('administradores.store', [EncargadoController::class, 'store'])
+    ->name('administradores.store');
+    route::delete('administradores.destroy/{id_persona}', [EncargadoController::class, 'destroy'])
+    ->name('administradores.destroy');
+    route::put('administradores.update/{id_persona}', [EncargadoController::class, 'update'])
+    ->name('administradores.update');
+    
     //Cliente-Odontologo
     Route::get('/odontologos', [OdontologoController::class, 'index'])
-        ->name('odontologos.index');
+    ->name('odontologos.index');
     Route::get('/odontologos/create', [OdontologoController::class, 'create'])
-        ->name('odontologos.create');    
+    ->name('odontologos.create');    
+    route::get('odontologos.edit/{id_persona}', [OdontologoController::class, 'edit'])
+    ->name('odontologos.edit');
+    route::post('odontologos.store', [OdontologoController::class, 'store'])
+    ->name('odontologos.store');
+    route::delete('odontologos.destroy/{id_persona}', [OdontologoController::class, 'destroy'])
+    ->name('odontologos.destroy');
+    route::put('odontologos.update/{id_persona}', [OdontologoController::class, 'update'])
+    ->name('odontologos.update');
            
     //Clinica
     Route::get('/clinicas', [ClinicaController::class, 'index'])->name('clinicas.index');
-    Route::get('/clinicas/create', [ClinicaController::class, 'create'])
-    ->name('clinicas.create');
+    Route::get('/clinicas/create', [ClinicaController::class, 'create'])->name('clinicas.create');
+    Route::post('/clinicas', [ClinicaController::class, 'store'])->name('clinicas.store');
+    Route::delete('/clinicas.destroy/{id}',[ClinicaController::class, 'destroy'])->name('clinicas.destroy');
+    Route::put('/clinicas/{id}',[ClinicaController::class, 'update'])->name('clinicas.update');
+    Route::get('/clinicas/{id}/edit', [ClinicaController::class, 'edit'])->name('clinicas.edit');
 
 
     //Categorias
     Route::get('/categorias', [CategoriaController::class, 'index'])->name('categorias.index');
-    Route::get('/categorias/create', [CategoriaController::class, 'create'])
-    ->name('categorias.create');
-    route::post('categorias.store', [ProveedorController::class, 'store'])->name('categorias.store');
- 
+    Route::get('/categorias/create', [CategoriaController::class, 'create'])->name('categorias.create');
+    Route::post('/categorias', [CategoriaController::class, 'store'])->name('categorias.store');
+    Route::delete('/categorias.destroy/{id}',[CategoriaController::class, 'destroy'])->name('categorias.destroy');
+    Route::put('/categorias/{id}',[CategoriaController::class, 'update'])->name('categorias.update');
+    Route::get('/categorias/{id}/edit', [CategoriaController::class, 'edit'])->name('categorias.edit');
     
 });

@@ -25,10 +25,12 @@
                                     </ul>
                                 </div>
                             @endif
+
                             <!-- personas.create=stores-->
-                            <form class="user"  method="POST"
+                            <form class="user"  action="{{ route('odontologos.store') }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
+                                
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="exampleInputEmail"
                                         name="ci" placeholder="Ci" value="{{ old('ci') }}">
@@ -46,7 +48,7 @@
                                
                                 <div class="form-group">
                                     <input type="tel" class="form-control form-control-user" id="exampleInputEmail"
-                                        name="tel" placeholder="Telefono" value="{{ old('tel') }}">
+                                        name="telefono" placeholder="Telefono" value="{{ old('telefono') }}">
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="exampleInputEmail"
@@ -54,15 +56,28 @@
                                 </div>
                                 <div class="form-group">
                                     <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                                        name="email" placeholder="Email" value="{{ old('email') }}">
+                                        name="correo" placeholder="Correo" value="{{ old('correo') }}">
                                 </div>
-                     
-                               
+
                                 <div class="form-group">
-                                    <label for="especialidad">Especialidad: </label>
-                                    <select name="especialidad" class="form-select" aria-label="Default select example">
-                                       
+                                    <input type="hidden" class="form-control form-control-user" id="exampleInputEmail"
+                                        name="tipo" value="O">
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 mt-3">
+                                    <label for="id_unidadMedida" class="form-label la">Clinica:</label>
+                                    <select class="form-control js-example-theme-single " name="id_clinica" id="id_clinica" >
+                                        <option disabled selected>---Seleccione---</option>
+                                    @foreach ($clinica as $clinicas )
+            
+                                    <option {{old('id_clinica')==$clinicas->id ? 'selected' : ' '}} value="{{$clinicas->id}}"> {{$clinicas->nombre}}</option>
+            
+                                    @endforeach
                                     </select>
+                                </div><br>
+
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-user" id="exampleInputEmail"
+                                        name="especialidad" placeholder="Especialidad" value="{{ old('especialidad') }}">
                                 </div>
                                 
                                 <div class="form-group row">
@@ -70,7 +85,7 @@
                                         <input type="submit" class="btn btn-facebook btn-user btn-block" value="Aceptar">
                                     </div>
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <a href="{{ route('menu') }}"
+                                        <a href="{{ route('odontologos.index') }}"
                                             class="btn btn-primary btn-user btn-block">
                                             Cancelar
                                         </a>

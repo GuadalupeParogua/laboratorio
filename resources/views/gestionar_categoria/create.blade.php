@@ -34,9 +34,9 @@
                                     <label for=""> Pertenece a:</label>
                                     <div class="opcion">
                                         <label for=""> Producto final:</label>
-                                        <input type="radio" name="categoria"><br>
+                                        <input type="radio" name="radio" id="producto" value="producto"><br>
                                         <label for=""> Materia Prima:</label>
-                                        <input type="radio" name="categoria">
+                                        <input type="radio" name="radio" id="materia" value="materia">
                                     </div>
                                     
                                 </div>

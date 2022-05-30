@@ -35,6 +35,37 @@
                                             <th>Telefono</th>
                                         </tr>
                                     </tfoot>
+                                    <tbody>
+                                        @foreach ($clinica as $clinica)
+                                        <tr>                                           
+                                            <td>{{$clinica->id}}</td>
+                                            <td>{{$clinica->nombre}}</td>
+                                            <td>{{$clinica->direccion}}</td>
+                                            <td>{{$clinica->telefono}}</td>
+                                            <td>
+                                                <a href="{{route('clinicas.edit', $clinica->id)}}" class="btn btn-info btn-icon-split"
+                                                style="height: 35px">
+                                                    <span class="icon text-white-50">
+                                                        <i class="fas fa-info-circle"></i>
+                                                    </span>
+                                                    <span class="text">Editar</span>
+                                                </a>
+                                                <div class="my-2"></div>
+                                                <form action="{{route('clinicas.destroy', $clinica->id)}}" method="POST" 
+                                                    class="btn btn-danger btn-icon-split"
+                                                style="height: 35px; width: 110px;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <span class="icon text-white-50">
+                                                        <i class="fas fa-trash"></i>
+                                                    </span>
+                                                    <input type="submit" value="Eliminar"  class="btn btn-danger btn-icon-split">
+                                                </form>                                         
+                                                
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
                                     
                                 </table>
                             </div>

@@ -15,14 +15,14 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Lista de clientes</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Lista de administradores</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Id</th>
+                                            <th>Nrº</th>
                                             <th>CI</th>
                                             <th>Nombre</th>
                                             <th>Apellido</th>
@@ -30,12 +30,12 @@
                                             <th>Direccion</th>
                                             <th>Correo</th><!--nullable-->
                                             <th>Usuario</th><!--unique-->
-                                         
+                                            <th>Acciones</th><!--unique-->
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>Id</th>
+                                            <th>Nrº</th>
                                             <th>CI</th>
                                             <th>Nombre</th>
                                             <th>Apellido</th>
@@ -43,11 +43,40 @@
                                             <th>Direccion</th>
                                             <th>Correo</th><!--nullable-->
                                             <th>Usuario</th><!--unique-->
+                                            <th>Acciones</th>
                                         </tr>
                                     </tfoot>
-                                    <!--tbody>
+                                    <tbody>
+                                        @php
+                                            $i = 1;
+                                        @endphp
+
+                                        @foreach ($persona as $personas)
                                         
-                                    </tbody-->
+                                         
+                                            <tr>
+                                                <td>{{ $i++ }}</td>
+                                                <th>{{$personas->ci}}</th>
+                                                <th>{{$personas->nombre}}</th>
+                                                <th>{{$personas->apellido}}</th>
+                                                <th>{{$personas->telefono}}</th>
+                                                <th>{{$personas->direccion}}</th>
+                                                <th>{{$personas->correo}}</th><!--nullable-->
+                                                <th>{{$personas->encargado->usuario}}</th><!--unique-->
+                                                <td>
+                                                    <form action="{{ route('administradores.destroy', [$personas->id]) }}" method="post">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <a href="{{ route('administradores.edit', [$personas->id]) }}"
+                                                            class="btn btn-primary btn-sm fas fa-edit  cursor-pointer"></a>
+                                                        <button class="btn btn-danger btn-sm fas fa-trash-alt  cursor-pointer"
+                                                            onclick="return confirm('¿ESTA SEGURO DE  BORRAR?')" value="Borrar"></button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                    
                                 </table>
                             </div>
                         </div>

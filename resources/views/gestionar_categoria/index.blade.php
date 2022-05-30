@@ -23,6 +23,7 @@
                                         <tr>
                                             <th>Id</th>
                                             <th>Nombre</th>
+                                            <th>Tipo</th>
                                             <th>Acciones</th>
                                         </tr>
                                     </thead>
@@ -30,14 +31,22 @@
                                         <tr>
                                             <th>Id</th>
                                             <th>Nombre</th>
+                                            <th>Tipo</th>
                                             <th>Acciones</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        @foreach ($categorias as $categoria)
+                                        @foreach ($categoria as $categoria)
                                         <tr>                                           
                                             <td>{{$categoria->id}}</td>
                                             <td>{{$categoria->nombre}}</td>
+                                            @if ($categoria->tipo == 1)
+                                            <td>Producto final</td>
+                                            @endif
+                                            @if ($categoria->tipo == 0)
+                                            <td>Materia prima</td>
+                                            @endif
+
                                             <td>
                                                 <a href="{{route('categorias.edit', $categoria->id)}}" class="btn btn-info btn-icon-split"
                                                 style="height: 35px">

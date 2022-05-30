@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\encargado;
-//use App\Models\persona;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreencargadoRequest;
 use App\Http\Requests\UpdateencargadoRequest;
+use App\Models\persona;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use PhpParser\Node\Expr\New_;
+
 class EncargadoController extends Controller
 {
     /**
@@ -18,9 +20,10 @@ class EncargadoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $administradores= encargado::all();
-        return view('gestionar_encargado.index', compact('administradores'));
+    {   $persona = persona::where('tipo','A')->get();
+        $persona->load('encargado');
+        //$encargado=encargado::all();
+        return view('gestionar_encargado.index', compact('persona'));
     }
     public function loginView()
     {      
@@ -72,9 +75,25 @@ class EncargadoController extends Controller
      * @param  \App\Http\Requests\StoreencargadoRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreencargadoRequest $request)
+    public function store(Request $request)
     {
-        //
+      
+        $persona = new persona();
+        $persona->ci = $request->ci;
+        $persona->nombre = $request->nombre;
+        $persona->apellido = $request->apellido;
+        $persona->telefono = $request->telefono;
+        $persona->direccion = $request->direccion;
+        $persona->correo = $request->correo;
+        $persona->tipo = $request->tipo;
+        $persona->save();
+        
+        $encargado = new encargado();
+        $encargado->id_persona = $persona->id;
+        $encargado->usuario = $request->usuario;
+        $encargado->password = bcrypt($request->input('password'));
+        $encargado->save();        
+        return redirect()->route('administradores.index');
     }
 
     /**
@@ -94,9 +113,13 @@ class EncargadoController extends Controller
      * @param  \App\Models\encargado  $encargado
      * @return \Illuminate\Http\Response
      */
-    public function edit(encargado $encargado)
-    {
-        //
+    public function edit($id_persona)
+    { //$proveedor = proveedor::find($id);
+      //return view('proveedor.edit', compact('proveedor'));
+      $persona = persona::findOrFail($id_persona);
+      $persona->load('encargado');
+     // return view('gestionar_encargado.edit', ['encargado' => $persona]);
+     return view('gestionar_encargado.edit', compact('persona'));
     }
 
     /**
@@ -106,9 +129,25 @@ class EncargadoController extends Controller
      * @param  \App\Models\encargado  $encargado
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateencargadoRequest $request, encargado $encargado)
+    public function update(Request $request, $id_persona)
     {
-        //
+      $persona = persona::findOrFail($id_persona);
+      $persona->ci = $request->ci;
+      $persona->nombre = $request->nombre;
+      $persona->apellido = $request->apellido;
+      $persona->telefono = $request->telefono;
+      $persona->direccion = $request->direccion;
+      $persona->correo = $request->correo;
+      $persona->tipo = $request->tipo;
+      $persona->update();
+      
+      $encargado =encargado::find($id_persona);
+      $encargado->id_persona = $persona->id;
+      $encargado->usuario = $request->usuario;
+      $encargado->password = bcrypt($request->input('password'));
+      $encargado->update();        
+      return redirect()->route('administradores.index');
+
     }
 
     /**
@@ -117,8 +156,12 @@ class EncargadoController extends Controller
      * @param  \App\Models\encargado  $encargado
      * @return \Illuminate\Http\Response
      */
-    public function destroy(encargado $encargado)
+    public function destroy($id_persona)
     {
-        //
+      $persona = persona::findOrFail($id_persona);
+      $encargado = encargado::findOrFail($id_persona);
+      $encargado->delete();
+      $persona->delete();
+      return redirect()->route('administradores.index');
     }
 }

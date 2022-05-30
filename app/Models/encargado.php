@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Database\Eloquent\SoftDeletes;
+//use Illuminate\Database\Eloquent\SoftDeletes;
 
 class encargado extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
     protected $table = 'encargados';
-    use SoftDeletes;
+//    use SoftDeletes;
 
     protected $fillable = [
         'id_persona',
@@ -24,5 +24,10 @@ class encargado extends Authenticatable
     protected $hidden = [
         'password',
     ];
+
+    public function persona()
+    {
+        return $this->belongsTo(persona::class,'id_persona', 'id');
+    }
 
 }

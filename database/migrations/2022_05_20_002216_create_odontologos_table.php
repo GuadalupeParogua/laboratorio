@@ -18,7 +18,6 @@ return new class extends Migration
             $table->unsignedBigInteger('id_persona');
             $table->unsignedBigInteger('id_clinica');
             $table->string('especialidad');
-            $table->integer('tipo');
 
             $table->timestamps();
             $table->foreign('id_persona')->on('personas')->references('id')->onDelete('cascade')->onUpdate('cascade');

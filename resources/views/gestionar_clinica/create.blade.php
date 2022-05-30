@@ -25,7 +25,36 @@
                                     </ul>
                                 </div>
                             @endif
-                            
+                            <!-- Formulario registrar: -->
+                            <form class="user" action="{{ route('clinicas.store') }}" method="POST"
+                                enctype="multipart/form-data">
+                                @csrf
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-user" id="nombre"
+                                        name="nombre" placeholder="Nombre de la clínica" value="{{ old('nombre') }}">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-user" id="direccion"
+                                        name="direccion" placeholder="Direccion" value="{{ old('direccion') }}">
+                                </div>
+                                <div class="form-group">
+                                    <input type="tel" class="form-control form-control-user" id="telefono"
+                                        name="telefono" placeholder="Telefono" value="{{ old('telefono') }}">
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="submit" class="btn btn-facebook btn-user btn-block" value="Aceptar">
+                                    </div>
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <a href="{{ route('menu') }}"
+                                            class="btn btn-primary btn-user btn-block">
+                                            Cancelar
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </form>
+
                             <hr>
                         </div>
                     </div>
@@ -36,3 +65,4 @@
     </div>
 
 @endsection
+
