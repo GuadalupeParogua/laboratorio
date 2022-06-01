@@ -21,6 +21,7 @@ class EncargadoController extends Controller
      */
     public function index()
     {   $persona = persona::where('tipo','A')->get();
+        $encargado = encargado::all();
         $persona->load('encargado');
         //$encargado=encargado::all();
         return view('gestionar_encargado.index', compact('persona'));
@@ -116,8 +117,10 @@ class EncargadoController extends Controller
     public function edit($id_persona)
     { //$proveedor = proveedor::find($id);
       //return view('proveedor.edit', compact('proveedor'));
-      $persona = persona::findOrFail($id_persona);
+      $persona = persona::find($id_persona);
+      $encargado = encargado::all();
       $persona->load('encargado');
+      
      // return view('gestionar_encargado.edit', ['encargado' => $persona]);
      return view('gestionar_encargado.edit', compact('persona'));
     }
@@ -131,7 +134,8 @@ class EncargadoController extends Controller
      */
     public function update(Request $request, $id_persona)
     {
-      $persona = persona::findOrFail($id_persona);
+
+      $persona = persona::find($id_persona);
       $persona->ci = $request->ci;
       $persona->nombre = $request->nombre;
       $persona->apellido = $request->apellido;
@@ -140,9 +144,10 @@ class EncargadoController extends Controller
       $persona->correo = $request->correo;
       $persona->tipo = $request->tipo;
       $persona->update();
-      
-      $encargado =encargado::find($id_persona);
-      $encargado->id_persona = $persona->id;
+      //$encargado=encargado::all();
+      $encargado = encargado::where('id_persona',$id_persona)->first();
+      //echo ($encargado);
+      //exit();
       $encargado->usuario = $request->usuario;
       $encargado->password = bcrypt($request->input('password'));
       $encargado->update();        
@@ -159,9 +164,9 @@ class EncargadoController extends Controller
     public function destroy($id_persona)
     {
       $persona = persona::findOrFail($id_persona);
-      $encargado = encargado::findOrFail($id_persona);
-      $encargado->delete();
-      $persona->delete();
+      $encargado = encargado::where('id_persona',$id_persona)->first();
+      $encargado->delete($encargado);
+      $persona->delete($persona);
       return redirect()->route('administradores.index');
     }
 }

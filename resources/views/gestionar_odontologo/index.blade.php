@@ -49,7 +49,10 @@
                                     <tbody>
                                         @php
                                             $i = 1;
+                                            
                                         @endphp
+                                        
+
                                             @foreach ($persona as $personas)
                                             <tr>
                                                 <td>{{ $i++ }}</td>

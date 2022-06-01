@@ -18,9 +18,10 @@ class OdontologoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {   $persona = persona::where('tipo','O')->get();
+        $odontologo = odontologo::all();
         $clinica = clinica::all();
-        $persona = persona::where('tipo','O')->get();
+        
         $persona->load('odontologo');
         return view('gestionar_odontologo.index', compact('persona'));
     }
@@ -110,9 +111,9 @@ class OdontologoController extends Controller
         $persona->correo = $request->correo;
         $persona->tipo = $request->tipo;
         $persona->update();
+      
+        $odontologo = odontologo::where('id_persona',$id_persona)->first();
         
-        $odontologo = odontologo::find($id_persona);
-        $odontologo->id_persona = $persona->id;
         $odontologo->id_clinica = $request->id_clinica;
         $odontologo->especialidad = $request->especialidad;
         
@@ -129,10 +130,10 @@ class OdontologoController extends Controller
     public function destroy($id_persona)
     {
         $persona = persona::findOrFail($id_persona);
-        $odontologo = odontologo::findOrFail($id_persona);
+        $odontologo = odontologo::where('id_persona',$id_persona)->first();
         $odontologo->delete();
         $persona->delete();
-        return redirect()->route('odontolodos.index');
+        return redirect()->route('odontologos.index');
       
     }
 }
