@@ -1,6 +1,6 @@
 @extends('layouts.template')
 
-@section('header')Registrar nueva categoria @endsection
+@section('header')Editar Tipo de pago @endsection
 
 @section('content')
     <div class="container">
@@ -13,7 +13,7 @@
                     <div class="col-lg-7">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Registrar categoria</h1>
+                                <h1 class="h4 text-gray-900 mb-4">Editar Tipo de pago</h1>
                             </div>
                             {{ csrf_field() }}
                             @if ($errors->any())
@@ -25,25 +25,30 @@
                                     </ul>
                                 </div>
                             @endif
-                            <form class="user" action="{{ route('categorias.store') }}" method="POST"
+                            <!-- Formulario editar: -->
+                            <form class="user" action="{{ route('tipo_de_pago.update', $tipo_de_pago) }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
+                                @method('put')
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-user" id="exampleInputEmail"
-                                        name="nombre" placeholder="Nombre" value="{{ old('nombre') }}">
+                                    <input type="text" class="form-control form-control-user" id="nombre"
+                                        name="tipo" placeholder="Tipo de pago" value="{{$tipo_de_pago->tipo}}">
                                 </div>
+
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="submit" class="btn btn-facebook btn-user btn-block" value="Aceptar">
                                     </div>
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <a href="{{ route('disciplinas.index') }}"
+                                        <a href="{{ route('menu') }}"
                                             class="btn btn-primary btn-user btn-block">
                                             Cancelar
                                         </a>
                                     </div>
                                 </div>
+
                             </form>
+
                             <hr>
                         </div>
                     </div>

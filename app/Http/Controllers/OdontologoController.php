@@ -20,9 +20,8 @@ class OdontologoController extends Controller
     public function index()
     {   $persona = persona::where('tipo','O')->get();
         $odontologo = odontologo::all();
-        $clinica = clinica::all();
-        
         $persona->load('odontologo');
+        // $clinica = clinica::all();
         return view('gestionar_odontologo.index', compact('persona'));
     }
 
@@ -88,6 +87,7 @@ class OdontologoController extends Controller
     {
         $clinica = clinica::all();
         $persona = persona::findOrFail($id_persona);
+        $odontologo = odontologo::all();
         $persona->load('odontologo');
         return view('gestionar_odontologo.edit', compact('persona','clinica'));
     
@@ -102,7 +102,7 @@ class OdontologoController extends Controller
      */
     public function update(Request $request, $id_persona)
     {
-        $persona = persona::findOrFail($id_persona);
+        $persona = persona::find($id_persona);
         $persona->ci = $request->ci;
         $persona->nombre = $request->nombre;
         $persona->apellido = $request->apellido;

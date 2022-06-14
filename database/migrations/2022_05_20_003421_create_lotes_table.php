@@ -19,7 +19,7 @@ return new class extends Migration
              $table->string('cantidad');
             $table->date('f_vencimiento'); /* fecha de compra */
             $table->date('f_entrega')->nullable();
-            $table->date('p_compra')->nullable();
+            $table->integer('p_compra')->nullable();
             $table->mediumInteger('estado')->default(1);
             $table->timestamps();
             $table->softDeletes();

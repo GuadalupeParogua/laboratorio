@@ -37,8 +37,7 @@ class EncargadoController extends Controller
         'usuario' => ['required', 'max:50'],
         'password' => ['required'],
       ]);
-      $encargado = encargado::where('usuario', $request->usuario)->first();
-        
+      $encargado = encargado::where('usuario', $request->usuario)->first();     
       if (is_null($encargado)) {
         return back()->withErrors(['error' => 'el usuario no existe']);
       }
