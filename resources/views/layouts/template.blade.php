@@ -92,7 +92,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Registrar:</h6>
                         <a class="collapse-item" href="{{route('proveedor.index')}}">Proveedor</a>
-                        <a class="collapse-item" href="{{asset('/compra')}}">Compra de materia prima</a>
+                       {{-- <a class="collapse-item" href="{{asset('/compra')}}">Compra de materia prima</a>--}}
                         <a class="collapse-item" href="{{route('mprimas.index')}}">Materia Prima</a>
                         <a class="collapse-item" href="{{route('unidadmedida.index')}}">Unidad de medida</a>
                     <a class="collapse-item" href="{{route('area.index')}}">Area de almacenamiento</a>
