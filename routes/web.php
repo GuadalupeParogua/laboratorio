@@ -5,6 +5,8 @@ use App\Http\Controllers\ClinicaController;
 use App\Http\Controllers\EncargadoController;
 use App\Http\Controllers\OdontologoController;
 use App\Http\Controllers\PersonaController;
+use App\Http\Controllers\TipoDePagoController;
+use App\Models\tipo_de_pago;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,7 +52,7 @@ Route::middleware('auth:admin')->group(function () {
     route::put('administradores.update/{id_persona}', [EncargadoController::class, 'update'])
     ->name('administradores.update');
     
-    //Cliente-Odontologo
+    //Cliente-Odontologo--listo
     Route::get('/odontologos', [OdontologoController::class, 'index'])
     ->name('odontologos.index');
     Route::get('/odontologos/create', [OdontologoController::class, 'create'])
@@ -64,7 +66,7 @@ Route::middleware('auth:admin')->group(function () {
     route::put('odontologos.update/{id_persona}', [OdontologoController::class, 'update'])
     ->name('odontologos.update');
            
-    //Clinica
+    //Clinica--listo
     Route::get('/clinicas', [ClinicaController::class, 'index'])->name('clinicas.index');
     Route::get('/clinicas/create', [ClinicaController::class, 'create'])->name('clinicas.create');
     Route::post('/clinicas', [ClinicaController::class, 'store'])->name('clinicas.store');
@@ -73,7 +75,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/clinicas/{id}/edit', [ClinicaController::class, 'edit'])->name('clinicas.edit');
 
 
-    //Categorias
+    //Categorias--listo
     Route::get('/categorias', [CategoriaController::class, 'index'])->name('categorias.index');
     Route::get('/categorias/create', [CategoriaController::class, 'create'])->name('categorias.create');
     Route::post('/categorias', [CategoriaController::class, 'store'])->name('categorias.store');
@@ -81,4 +83,11 @@ Route::middleware('auth:admin')->group(function () {
     Route::put('/categorias/{id}',[CategoriaController::class, 'update'])->name('categorias.update');
     Route::get('/categorias/{id}/edit', [CategoriaController::class, 'edit'])->name('categorias.edit');
     
+    //TipoDePago
+    Route::get('/tipo_de_pago', [TipoDePagoController::class, 'index'])->name('tipo_de_pago.index');
+    Route::get('/tipo/create', [TipoDePagoController::class, 'create'])->name('tipo_de_pago.create');    
+    route::get('/tipo.edit/{id}', [TipoDePagoController::class, 'edit'])->name('tipo_de_pago.edit');
+    route::post('/tipo.store', [TipoDePagoController::class, 'store'])->name('tipo_de_pago.store');
+    route::delete('/tipo.destroy/{id}', [TipoDePagoController::class, 'destroy'])->name('tipo_de_pago.destroy');
+    route::put('/tipo.update/{id}', [TipoDePagoController::class, 'update'])->name('tipo_de_pago.update');
 });

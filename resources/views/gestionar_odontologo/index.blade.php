@@ -54,6 +54,7 @@
                                         
 
                                             @foreach ($persona as $personas)
+                                
                                             <tr>
                                                 <td>{{ $i++ }}</td>
                                                 <th>{{$personas->ci}}</th>

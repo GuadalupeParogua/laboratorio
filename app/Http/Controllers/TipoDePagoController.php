@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\tipo_de_pago;
 use App\Http\Requests\Storetipo_de_pagoRequest;
 use App\Http\Requests\Updatetipo_de_pagoRequest;
+use Illuminate\Http\Request;
 
 class TipoDePagoController extends Controller
 {
@@ -15,7 +16,8 @@ class TipoDePagoController extends Controller
      */
     public function index()
     {
-        //
+        $tipo_de_pagos = tipo_de_pago::all();
+        return view('tipo_de_pago.index')->with('tipo_de_pagos', $tipo_de_pagos);
     }
 
     /**
@@ -25,7 +27,7 @@ class TipoDePagoController extends Controller
      */
     public function create()
     {
-        //
+        return view('tipo_de_pago.create');
     }
 
     /**
@@ -34,9 +36,12 @@ class TipoDePagoController extends Controller
      * @param  \App\Http\Requests\Storetipo_de_pagoRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Storetipo_de_pagoRequest $request)
+    public function store(Request $request)
     {
-        //
+        $tipo_de_pago = new tipo_de_pago();
+        $tipo_de_pago->tipo = $request->tipo;
+        $tipo_de_pago->save();
+        return redirect()->route('tipo_de_pago.index');
     }
 
     /**
@@ -47,7 +52,7 @@ class TipoDePagoController extends Controller
      */
     public function show(tipo_de_pago $tipo_de_pago)
     {
-        //
+        
     }
 
     /**
@@ -56,9 +61,10 @@ class TipoDePagoController extends Controller
      * @param  \App\Models\tipo_de_pago  $tipo_de_pago
      * @return \Illuminate\Http\Response
      */
-    public function edit(tipo_de_pago $tipo_de_pago)
+    public function edit( $id)
     {
-        //
+        $tipo_de_pago = tipo_de_pago::find($id);
+        return view('tipo_de_pago.edit')->with('tipo_de_pago', $tipo_de_pago);
     }
 
     /**
@@ -68,9 +74,12 @@ class TipoDePagoController extends Controller
      * @param  \App\Models\tipo_de_pago  $tipo_de_pago
      * @return \Illuminate\Http\Response
      */
-    public function update(Updatetipo_de_pagoRequest $request, tipo_de_pago $tipo_de_pago)
+    public function update(Request $request, $id)
     {
-        //
+        $tipo_de_pago = tipo_de_pago::find($id);
+        $tipo_de_pago->tipo = $request->tipo;
+        $tipo_de_pago->update();
+        return redirect('tipo_de_pago');
     }
 
     /**
@@ -79,8 +88,10 @@ class TipoDePagoController extends Controller
      * @param  \App\Models\tipo_de_pago  $tipo_de_pago
      * @return \Illuminate\Http\Response
      */
-    public function destroy(tipo_de_pago $tipo_de_pago)
+    public function destroy($id)
     {
-        //
+        $tipo_de_pago = tipo_de_pago::find($id);
+        $tipo_de_pago->delete();
+        return redirect('tipo_de_pago');
     }
 }

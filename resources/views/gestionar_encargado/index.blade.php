@@ -52,7 +52,12 @@
                                         @endphp
 
                                         @foreach ($persona as $personas)
-                                        
+                                        @php
+                                            echo $personas;
+                                            //echo $personas->$encargado;
+                                            //$personas->odontologos->especialidad;
+                                            exit();
+                                        @endphp
                                          
                                             <tr>
                                                 <td>{{ $i++ }}</td>
