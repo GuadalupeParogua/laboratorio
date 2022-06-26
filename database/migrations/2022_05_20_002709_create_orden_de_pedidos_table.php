@@ -18,10 +18,11 @@ return new class extends Migration
 
             $table->unsignedBigInteger('id_odontologo');
             $table->unsignedBigInteger('id_encargado');
+         
             $table->text('detalle');
-            $table->dateTime('fechaPedido');
-            $table->dateTime('fechaEntrega');
-            //$table->string('estado');
+            $table->date('fechaPedido')->nullable();
+            $table->date('fechaEntrega')->nullable();
+            $table->integer('estado')->default(1);
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('id_odontologo')->on('odontologos')->references('id')->onDelete('cascade')->onUpdate('cascade');
@@ -34,6 +35,7 @@ return new class extends Migration
      *
      * @return void
      */
+
     public function down()
     {
         Schema::dropIfExists('orden_de_pedidos');

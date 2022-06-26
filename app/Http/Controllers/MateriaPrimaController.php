@@ -114,7 +114,7 @@ class MateriaPrimaController extends Controller
          $mprima->id_unidadMedida = $request->id_unidadMedida;
          $mprima->id_area = $request->id_area;
          $mprima->id_categoria = $request->id_categoria;
-         $mprima->save();
+         $mprima->update();
          return redirect()->route('mprimas.index');
     }
 

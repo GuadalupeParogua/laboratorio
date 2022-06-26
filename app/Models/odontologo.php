@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\orden_de_pedido;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 //use Illuminate\Database\Eloquent\SoftDeletes;
 
 class odontologo extends Model
@@ -23,6 +24,12 @@ class odontologo extends Model
     public function clinica()
     {
         return $this->belongsTo(clinica::class,'id_clinica', 'id');
+    }
+    /* relacion de orden de pedido con odontologo */
+    // uno a muchos
+    public function Orden_pedido()
+    {
+        return $this->hasMany(orden_de_pedido::class, 'id');
     }
 }
 

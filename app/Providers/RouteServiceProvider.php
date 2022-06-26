@@ -45,6 +45,10 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/unidadmedida/unidadmedida.php'));
                 Route::middleware('web')
                 ->group(base_path('routes/area_almacenamiento/area-route.php'));
+                Route::middleware('web')
+                ->group(base_path('routes/orden_pedido/orden_pedido.php'));
+                Route::middleware('web')
+                ->group(base_path('routes/pago/pago-route.php'));
         });
     }
 
