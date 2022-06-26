@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\pago;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class tipo_de_pago extends Model
 {
@@ -14,4 +15,9 @@ class tipo_de_pago extends Model
         'tipo',
 
     ];
+    // uno a muchos
+    public function pago()
+    {
+        return $this->hasMany(pago::class, 'id');
+    }
 }

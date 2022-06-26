@@ -18,15 +18,13 @@ return new class extends Migration
 
             $table->unsignedBigInteger('id_ordenpedido');
             $table->unsignedBigInteger('id_tipo');
-            $table->dateTime('fecha');
-            $table->integer('cancelado');
-            $table->integer('pendiente');
-            
+            $table->date('fecha');
+            $table->integer('estado');
             $table->timestamps();
             $table->softDeletes();
 	        $table->foreign('id_ordenpedido')->on('orden_de_pedidos')->references('id')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('id_tipo')->on('tipo_de_pagos')->references('id')->onDelete('cascade')->onUpdate('cascade');
-            
+
         });
     }
 
