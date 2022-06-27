@@ -42,8 +42,6 @@ style="background-color:#fbaf32">
         @foreach ($orden as $ordenes)
             <tr>
                 <td>{{ $i++ }}</td>
-                <td>{{ $ordenes->detalle }}</td>
-
                 <td>{{ $ordenes->encargado->usuario }}</td>
                 <td>{{ $ordenes->Odontologo->nombre }}</td>
                 <td>{{ $ordenes->detalle }}</td>
