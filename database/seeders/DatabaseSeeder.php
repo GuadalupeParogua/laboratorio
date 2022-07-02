@@ -24,9 +24,9 @@ class DatabaseSeeder extends Seeder
             // UserSeeder::class,
              PersonaSeeder::class,
              EncargadoSeeder::class,
-             ClinicaSeeder::class,
+            /* ClinicaSeeder::class,
              OdontologoSeeder::class,
-             TipoDePagoSeeder::class,
+             TipoDePagoSeeder::class,*/
 
 
          ]);

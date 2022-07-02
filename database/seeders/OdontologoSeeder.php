@@ -15,7 +15,7 @@ class OdontologoSeeder extends Seeder
      */
     public function run()
     {
-        odontologo::create([
+        /*odontologo::create([
             'id'=>1,
             'id_persona'=>1,
             'id_clinica'=>1,
@@ -23,6 +23,6 @@ class OdontologoSeeder extends Seeder
             'nombre'=> 'Rous ',
            
 
-        ]);
+        ]);*/
     }
 }
