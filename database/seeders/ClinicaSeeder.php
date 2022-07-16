@@ -15,7 +15,7 @@ class ClinicaSeeder extends Seeder
      */
     public function run()
     {
-        clinica::create([
+        /*clinica::create([
             'id'=>1,
             'nombre'=>10632314,
             'nombre'=> 'EL Este',
@@ -32,6 +32,6 @@ class ClinicaSeeder extends Seeder
             'telefono'=>74526316,
 
 
-        ]);
+        ]);*/
     }
 }

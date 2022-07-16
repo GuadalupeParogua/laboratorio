@@ -15,7 +15,7 @@ class TipoDePagoSeeder extends Seeder
      */
     public function run()
     {
-        tipo_de_pago::create([
+        /*tipo_de_pago::create([
             'id'=>1,
             'tipo'=>'Contado',
 
@@ -24,6 +24,6 @@ class TipoDePagoSeeder extends Seeder
             'id'=>2,
             'tipo'=>'Crédito',
 
-        ]);
+        ]);*/
     }
 }

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_persona');
             $table->unsignedBigInteger('id_clinica');
             $table->string('especialidad');
-            $table->string('nombre');
+            //$table->string('nombre');
             $table->timestamps();
             $table->foreign('id_persona')->on('personas')->references('id')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('id_clinica')->on('clinicas')->references('id')->onDelete('cascade')->onUpdate('cascade');
