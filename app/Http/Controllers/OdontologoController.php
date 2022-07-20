@@ -44,10 +44,16 @@ class OdontologoController extends Controller
      */
     public function store(Request $request)
     {
-       /* $request->validate([
-            'id_clinica' =>'required',
+        $request->validate([
+            'nombre' => 'required|max:50',
+            'apellido' => 'required|max:50',
+            'ci' => 'required|max:50|unique:personas',
+            'email' => 'max:50|unique:personas',
+            'telefono' => 'integer|max:50',
+            'direccion' => 'required|max:50',
+            'correo' => 'max:50|unique:personas',
             ]
-        );*/
+        );
         $persona = new persona();
         $persona->ci = $request->ci;
         $persona->nombre = $request->nombre;

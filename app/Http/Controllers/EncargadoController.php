@@ -76,7 +76,16 @@ class EncargadoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   $request->validate([
+        'usuario' => ['required', 'max:50'],
+        'password' => ['required'],
+        'nombre' => ['required', 'max:50'],
+        'apellido' => ['required', 'max:50'],
+        'ci' => ['required', 'max:50' , 'unique:personas'],
+        'email' => [ 'max:50', 'unique:personas'],
+        'telefono' => ['required', 'max:50'],
+        'direccion' => ['required', 'max:50'],
+    ]);
       
         $persona = new persona();
         $persona->ci = $request->ci;
