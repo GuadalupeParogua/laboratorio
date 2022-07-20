@@ -49,7 +49,7 @@ class OdontologoController extends Controller
             'apellido' => 'required|max:50',
             'ci' => 'required|max:50|unique:personas',
             'email' => 'max:50|unique:personas',
-            'telefono' => 'integer|max:50',
+            'telefono' => 'integer',
             'direccion' => 'required|max:50',
             'correo' => 'max:50|unique:personas',
             ]
