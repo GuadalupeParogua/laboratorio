@@ -20,4 +20,7 @@ class categoria extends Model
        public function MateriaPri(){
         return $this->hasMany(materia_prima::class,'id')->orderBy('nombre', 'asc');
     }
+    public function producto(){
+        return $this->hasMany(producto_final::class,'id_categoria', 'id')->orderBy('nombre', 'asc');
+    }
 }
