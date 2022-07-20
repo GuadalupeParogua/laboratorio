@@ -1,13 +1,14 @@
 <?php
 
-use App\Http\Controllers\CategoriaController;
-use App\Http\Controllers\ClinicaController;
-use App\Http\Controllers\EncargadoController;
-use App\Http\Controllers\OdontologoController;
-use App\Http\Controllers\PersonaController;
-use App\Http\Controllers\TipoDePagoController;
 use App\Models\tipo_de_pago;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ClinicaController;
+use App\Http\Controllers\PersonaController;
+use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\EncargadoController;
+use App\Http\Controllers\OdontologoController;
+use App\Http\Controllers\TipoDePagoController;
+use App\Http\Controllers\AreaAlmacenamientoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,7 +43,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/administradores', [EncargadoController::class, 'index'])
     ->name('administradores.index');
     Route::get('/administradores/create', [EncargadoController::class, 'create'])
-    ->name('administradores.create');   
+    ->name('administradores.create');
     route::get('administradores.edit/{id_persona}', [EncargadoController::class, 'edit'])
     ->name('administradores.edit');
     route::post('administradores.store', [EncargadoController::class, 'store'])
@@ -51,12 +52,12 @@ Route::middleware('auth:admin')->group(function () {
     ->name('administradores.destroy');
     route::put('administradores.update/{id_persona}', [EncargadoController::class, 'update'])
     ->name('administradores.update');
-    
+
     //Cliente-Odontologo--listo
     Route::get('/odontologos', [OdontologoController::class, 'index'])
     ->name('odontologos.index');
     Route::get('/odontologos/create', [OdontologoController::class, 'create'])
-    ->name('odontologos.create');    
+    ->name('odontologos.create');
     route::get('odontologos.edit/{id_persona}', [OdontologoController::class, 'edit'])
     ->name('odontologos.edit');
     route::post('odontologos.store', [OdontologoController::class, 'store'])
@@ -65,7 +66,7 @@ Route::middleware('auth:admin')->group(function () {
     ->name('odontologos.destroy');
     route::put('odontologos.update/{id_persona}', [OdontologoController::class, 'update'])
     ->name('odontologos.update');
-           
+
     //Clinica--listo
     Route::get('/clinicas', [ClinicaController::class, 'index'])->name('clinicas.index');
     Route::get('/clinicas/create', [ClinicaController::class, 'create'])->name('clinicas.create');
@@ -82,12 +83,21 @@ Route::middleware('auth:admin')->group(function () {
     Route::delete('/categorias.destroy/{id}',[CategoriaController::class, 'destroy'])->name('categorias.destroy');
     Route::put('/categorias/{id}',[CategoriaController::class, 'update'])->name('categorias.update');
     Route::get('/categorias/{id}/edit', [CategoriaController::class, 'edit'])->name('categorias.edit');
-    
-    //TipoDePago
+
+    //TipoDePago y el listo xd?
     Route::get('/tipo_de_pago', [TipoDePagoController::class, 'index'])->name('tipo_de_pago.index');
-    Route::get('/tipo/create', [TipoDePagoController::class, 'create'])->name('tipo_de_pago.create');    
+    Route::get('/tipo/create', [TipoDePagoController::class, 'create'])->name('tipo_de_pago.create');
     route::get('/tipo.edit/{id}', [TipoDePagoController::class, 'edit'])->name('tipo_de_pago.edit');
     route::post('/tipo.store', [TipoDePagoController::class, 'store'])->name('tipo_de_pago.store');
     route::delete('/tipo.destroy/{id}', [TipoDePagoController::class, 'destroy'])->name('tipo_de_pago.destroy');
     route::put('/tipo.update/{id}', [TipoDePagoController::class, 'update'])->name('tipo_de_pago.update');
+
+
+    /* Area Almacenamiento */
+    route::get('area.index', [AreaAlmacenamientoController::class, 'index'])->name('area.index');
+    route::get('area.create', [AreaAlmacenamientoController::class, 'create'])->name('area.create');
+    route::get('area.edit/{id}', [AreaAlmacenamientoController::class, 'edit'])->name('area.edit');
+    route::post('area.store', [AreaAlmacenamientoController::class, 'store'])->name('area.store');
+    route::delete('area.destroy/{id}', [AreaAlmacenamientoController::class, 'destroy'])->name('area.destroy');
+    route::put('area.update/{id}', [AreaAlmacenamientoController::class, 'update'])->name('area.update');
 });

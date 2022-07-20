@@ -69,7 +69,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Registrar:</h6>
                         <a class="collapse-item" href="{{route('odontologos.index')}}">Odontologo</a>
-                        <a class="collapse-item" href="{{asset('/clinicas')}}">Clinica</a>
+                        <a class="collapse-item" href="{{route('clinicas.index')}}">Clinica</a>
                         <a class="collapse-item" href="{{route('orden_pedido.index')}}">Orden de pedido</a>
                         <a class="collapse-item" href="{{asset('/productoFinal')}}">Producto Final</a>
 

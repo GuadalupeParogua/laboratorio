@@ -31,7 +31,7 @@ class OdontologoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   
+    {
         $clinica = clinica::all();
         return view('gestionar_odontologo.create',compact('clinica'));
     }
@@ -61,6 +61,7 @@ class OdontologoController extends Controller
         $odontologo = new odontologo();
         $odontologo->id_persona = $persona->id;
         $odontologo->id_clinica = $request->id_clinica;
+        $odontologo->nombre = $request->nombre;
         $odontologo->especialidad = $request->especialidad;
         $odontologo->save();
         return redirect()->route('odontologos.index');
@@ -90,7 +91,7 @@ class OdontologoController extends Controller
         $odontologo = odontologo::all();
         $persona->load('odontologo');
         return view('gestionar_odontologo.edit', compact('persona','clinica'));
-    
+
     }
 
     /**
@@ -111,12 +112,12 @@ class OdontologoController extends Controller
         $persona->correo = $request->correo;
         $persona->tipo = $request->tipo;
         $persona->update();
-      
+
         $odontologo = odontologo::where('id_persona',$id_persona)->first();
-        
+
         $odontologo->id_clinica = $request->id_clinica;
         $odontologo->especialidad = $request->especialidad;
-        
+
         $odontologo->update();
         return redirect()->route('odontologos.index');
     }
@@ -134,6 +135,6 @@ class OdontologoController extends Controller
         $odontologo->delete();
         $persona->delete();
         return redirect()->route('odontologos.index');
-      
+
     }
 }
