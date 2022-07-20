@@ -75,7 +75,7 @@
 
                         <a class="collapse-item" href="{{asset('/pago')}}">Pago cliente</a>
                         <a class="collapse-item" href="{{route('tipo_de_pago.index')}}">Tipo de pago</a>
-                        <a class="collapse-item" href="{{asset('/categorias')}}">Categoria</a>
+                        <a class="collapse-item" href="{{route('categorias.index')}}">Categoria</a>
                     </div>
                 </div>
             </li>
