@@ -7,7 +7,7 @@
                 <div class="container-fluid">
                     <!-- Page Heading -->
                     <p class="mb-4"></p>       
-                    <a href="{{'/categorias/create'}}" class="btn btn-success btn-icon-split">
+                    <a href="{{route('categorias.create')}}" class="btn btn-success btn-icon-split">
                         <span class="text">Registrar Categoria</span>
                     </a>
                     <div class="my-2"></div>

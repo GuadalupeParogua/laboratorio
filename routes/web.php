@@ -7,6 +7,8 @@ use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\EncargadoController;
 use App\Http\Controllers\OdontologoController;
+
+use App\Http\Controllers\ProductoFinalController;
 use App\Http\Controllers\TipoDePagoController;
 use App\Http\Controllers\AreaAlmacenamientoController;
 
@@ -100,4 +102,12 @@ Route::middleware('auth:admin')->group(function () {
     route::post('area.store', [AreaAlmacenamientoController::class, 'store'])->name('area.store');
     route::delete('area.destroy/{id}', [AreaAlmacenamientoController::class, 'destroy'])->name('area.destroy');
     route::put('area.update/{id}', [AreaAlmacenamientoController::class, 'update'])->name('area.update');
+    //Productos
+    Route::get('/productos', [ProductoFinalController::class, 'index'])->name('producto_final.index');
+    Route::get('/productos/create', [ProductoFinalController::class, 'create'])->name('productos.create');
+    Route::get('/productos/{id}/edit', [ProductoFinalController::class, 'edit'])->name('productos.edit');
+    Route::post('/productos', [ProductoFinalController::class, 'store'])->name('productos.store');
+    Route::delete('/productos.destroy/{id}',[ProductoFinalController::class, 'destroy'])->name('productos.destroy');
+    Route::put('/productos/{id}',[ProductoFinalController::class, 'update'])->name('productos.update');
+
 });
