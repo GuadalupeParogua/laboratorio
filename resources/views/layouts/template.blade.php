@@ -71,7 +71,7 @@
                         <a class="collapse-item" href="{{route('odontologos.index')}}">Odontologo</a>
                         <a class="collapse-item" href="{{route('clinicas.create')}}">Clinica</a>
                         <a class="collapse-item" href="{{route('orden_pedido.index')}}">Orden de pedido</a>
-                        <a class="collapse-item" href="{{asset('/productoFinal')}}">Producto Final</a>
+                        <a class="collapse-item" href="{{route('producto_final.index')}}">Producto Final</a>
 
                         <a class="collapse-item" href="{{asset('/pago')}}">Pago cliente</a>
                         <a class="collapse-item" href="{{route('tipo_de_pago.index')}}">Tipo de pago</a>

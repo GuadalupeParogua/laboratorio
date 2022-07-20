@@ -5,6 +5,7 @@ use App\Http\Controllers\ClinicaController;
 use App\Http\Controllers\EncargadoController;
 use App\Http\Controllers\OdontologoController;
 use App\Http\Controllers\PersonaController;
+use App\Http\Controllers\ProductoFinalController;
 use App\Http\Controllers\TipoDePagoController;
 use App\Models\tipo_de_pago;
 use Illuminate\Support\Facades\Route;
@@ -90,4 +91,13 @@ Route::middleware('auth:admin')->group(function () {
     route::post('/tipo.store', [TipoDePagoController::class, 'store'])->name('tipo_de_pago.store');
     route::delete('/tipo.destroy/{id}', [TipoDePagoController::class, 'destroy'])->name('tipo_de_pago.destroy');
     route::put('/tipo.update/{id}', [TipoDePagoController::class, 'update'])->name('tipo_de_pago.update');
+
+    //Productos
+    Route::get('/productos', [ProductoFinalController::class, 'index'])->name('producto_final.index');
+    Route::get('/productos/create', [ProductoFinalController::class, 'create'])->name('productos.create');
+    Route::get('/productos/{id}/edit', [ProductoFinalController::class, 'edit'])->name('productos.edit');
+    Route::post('/productos', [ProductoFinalController::class, 'store'])->name('productos.store');
+    Route::delete('/productos.destroy/{id}',[ProductoFinalController::class, 'destroy'])->name('productos.destroy');
+    Route::put('/productos/{id}',[ProductoFinalController::class, 'update'])->name('productos.update');
+    
 });
