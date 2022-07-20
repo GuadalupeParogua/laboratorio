@@ -67,7 +67,7 @@ class OdontologoController extends Controller
         $odontologo = new odontologo();
         $odontologo->id_persona = $persona->id;
         $odontologo->id_clinica = $request->id_clinica;
-        $odontologo->nombre = $request->nombre;
+        //$odontologo->nombre = $request->nombre;
         $odontologo->especialidad = $request->especialidad;
         $odontologo->save();
         return redirect()->route('odontologos.index');
